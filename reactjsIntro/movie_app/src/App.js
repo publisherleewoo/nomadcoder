@@ -1,40 +1,30 @@
 import React, { PureComponent } from 'react';
 
-
 class App extends PureComponent {
   constructor(props){
     super(props);
-    console.log("hello")
+    console.log("constructor")
   }
   state = {
-    count: 0
+    isLoading: true,
+    movies: []
   }
 
-  add=()=>{
-    this.setState((current)=>({
-      count : current.count +1
-    }))
-  }
-  min=()=>{
-    this.setState((current)=>({
-      count :  current.count -1
-    }))
-  }
+   
   componentDidMount(){
-    console.log("component did Mount")
+    console.log("component did mount")
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 6000);
   }
+  
   componentDidUpdate(){
     console.log("component did update")
   }
   render() {
     console.log("render");
-    return (
-      <div>
-        <h1>the Number is {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
-        <button onClick={this.min}>Minus</button>
-      </div>
-    );
+    const { isLoading } = this.state;
+    return <div>{isLoading ? "Loading..." : "We are ready"}</div>;
   }
 }
 export default App;
