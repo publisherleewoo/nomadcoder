@@ -1,57 +1,21 @@
-import React, { PureComponent } from 'react';
-import Movie from "./Movie"
-import axios from "axios";
-import "./App.css";
-
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-    console.log("constructor")
-  }
-  state = {
-    isLoading: true,
-    movies: []
-  }
-
-  getMovides = async () => {
-    const { data: { data: { movies } } } = await axios.get("https://yts-proxy.now.sh/list_movies.json?sort_by=rating")
-    this.setState({ movies, isLoading: false })
-  }
-
-  componentDidMount() {
-    console.log("component did mount")
-    this.getMovides();
-  }
-
-  componentDidUpdate() {
-    console.log("component did update")
-  }
-  render() {
-    console.log("render");
-    const { isLoading, movies } = this.state;
-    return (
-      <section className="container">
-        {isLoading ? (
-          <div className="loader">
-            <span className="loader_text">Loading...</span>
-          </div>
-        ) : (
-            <div className="movies">
-              {movies.map(movie => {
-                return <Movie
-                  key={movie.id}
-                  id={movie.id}
-                  year={movie.year}
-                  title={movie.title}
-                  summary={movie.summary}
-                  poster={movie.medium_cover_image}
-                  genres={movie.genres}
-                />
-              })}
-            </div>
-          )}
-      </section>
-    )
-  }
+import React from "react";
+import {HashRouter,Route} from "react-router-dom"
+import Home from "./routes/Home"
+import Home2Param from './routes/Home2Param';
+import About from "./routes/About"
+import Navigation from './components/Navigation';
+import MovieDetail from './components/MovieDetail';
+import MovieParam from './components/MovieParam';
+function App(){
+  return <HashRouter>
+    <Navigation/>
+    <Route path="/" exact={true} component={Home}></Route>
+    <Route path="/movie-detail" exact={true}  component={MovieDetail}></Route>
+    <Route path="/Home2Param" exact={true} component={Home2Param}></Route>
+    <Route path="/movie/:id" exact={true} component={MovieParam}></Route>
+    <Route path="/about" component={About}></Route>
+  </HashRouter>
+ 
 }
-export default App;
+
+export default App

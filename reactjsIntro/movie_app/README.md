@@ -1,3 +1,48 @@
+github io에 deploy 시키는방법
+
+```
+npm i gh-pages --s
+```
+
+package.json
+```javascript
+ "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy":"gh-pages -d build",  //추가  gh-pages -d {폴더명}
+    "predeploy":"npm run build"  //추가
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage":"http://publisherleewoo.github.io/movie_app_2019"   //추가 {소문자,띄어쓰기 안됌}
+
+```
+
+```
+BrowserRouter가 아닌
+HashRouter를 사용한 이유는 github page에서 설정하기 쉽기때문이다.
+```
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
