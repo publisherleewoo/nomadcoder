@@ -1,0 +1,11 @@
+.button{
+
+}
+
+
+.button--sucess{
+  background:#2ecc71
+}
+.button--danger{
+  background:#e74c3c;
+}
