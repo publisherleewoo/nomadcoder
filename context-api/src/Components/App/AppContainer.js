@@ -18,8 +18,10 @@ class AppContainer extends Component {
         })
       },
       min:()=>{
+        console.log(this.state.count)
+        console.log(this.count)
         this.setState({
-          count:this.state.count-1
+          count:this.state.min-1
         })
       }
     }
