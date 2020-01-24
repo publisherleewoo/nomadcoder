@@ -3,35 +3,28 @@ import AppPresenter from "./AppPresenter";
 import Store from "store";
 
 class AppContainer extends Component {
-  constructor(props) {   //provider에 포함시키고 싶은 함수는 constructor에 있어야한다.
-    super(props);
+  constructor(props){
+    super(props)
     
+    // this._plusCount=()=>{
+
+    // }
     
-    this._changeMessage = () => {
-      if (this.state.message === "Hello") {
+    this.state={
+      count:0,
+      plus:()=>{
         this.setState({
-          message: "Bye bye"
+          count:this.state.count+1
         })
-      } else {
+      },
+      min:()=>{
         this.setState({
-          message: "Hello"
+          count:this.state.count-1
         })
       }
     }
-
-    this.state = {
-      message: "Hello",
-      changeMessage:this._changeMessage
-    }
-
-
-
   }
-  componentDidMount = () => {
-    setTimeout(() => {
-      this.setState({ message: "Bye" })
-    }, 2000)
-  }
+  
   render() {
     return (
       <Store.Provider value={this.state}>
