@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Flex, { FlexItem } from "styled-flex-component";
 import FontAwesome from "react-fontawesome";
+import Store from "../../store";
 
 const Header = styled.header`
   height: 100px;
@@ -59,8 +60,18 @@ const HeaderPresenter = () => (
           </HeaderIcon>
           <HeaderIcon>
             <FontAwesome name="bell" />
-            <Number>10</Number>
-          </HeaderIcon>
+            <Number>
+            <Store.Consumer>
+            {
+              (store)=>{
+                return(
+                  store.notifications.length
+                )
+              }
+            }
+            </Store.Consumer>
+            </Number>
+            </HeaderIcon>
         </Flex>
       </FlexItem>
     </Flex>
